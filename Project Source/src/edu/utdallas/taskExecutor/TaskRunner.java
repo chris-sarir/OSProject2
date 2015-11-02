@@ -5,6 +5,7 @@ import java.lang.reflect.Array;
 /**
  * Created by mdw130530- on 11/2/2015.
  */
+
 public class TaskRunner implements Runnable{
     //private BlockingQueue taskQueue = null; //Cannot use BlockingQueue from concurrent
     private Class<?> taskQueue = null;
@@ -32,7 +33,15 @@ public class TaskRunner implements Runnable{
    public void run(){
        while(true){
            nextTask = take();
-           nextTask.execute();
+
+           try{
+               nextTask.execute();
+           }catch(Throwable th){
+               //do nothing
+               //System.err.println(th.getMessage);
+           }
+
+
        }
     }
 }
