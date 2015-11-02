@@ -10,13 +10,30 @@ public class TaskRunner implements Runnable{
     //private BlockingQueue taskQueue = null; //Cannot use BlockingQueue from concurrent
     private Class<?> taskQueue = null;
     private Task nextTask = null;
+    private String taskName="UNNAMMED";
+    private int taskNumber=-1;
+    private static int number=0;
 
     TaskRunner(){
-
+        taskNumber=number++;
     }
 
-    TaskRunner(Class<?> blockqueue){
+    TaskRunner(String name){
+        taskName=name;
+        taskNumber=number++;
+    }
+
+    TaskRunner(String name, Class<?> blockqueue){
+        taskName=name;
         taskQueue = blockqueue;
+        taskNumber=number++;
+    }
+
+    public String getName(){
+        return taskName;
+    }
+    public int getNumber(){
+        return taskNumber;
     }
 
     public void setBlockingQueue(Class<?> blockqueue){
@@ -40,8 +57,6 @@ public class TaskRunner implements Runnable{
                //do nothing
                //System.err.println(th.getMessage);
            }
-
-
        }
     }
 }
