@@ -21,6 +21,7 @@ public class TaskRunner implements Runnable{
     public void setBlockingQueue(Class<?> blockqueue){
         //if (blockqueue instanceof BlockingTaskQueue );
         taskQueue = blockqueue;
+        // else throw exception
     }
 
     public Task take(){
