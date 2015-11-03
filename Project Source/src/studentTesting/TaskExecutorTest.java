@@ -1,4 +1,4 @@
-package edu.utdallas.taskExecutor.studentTesting;
+package studentTesting;
 
 import edu.utdallas.taskExecutor.Task;
 import edu.utdallas.taskExecutorImpl.TaskExecutorImpl;
