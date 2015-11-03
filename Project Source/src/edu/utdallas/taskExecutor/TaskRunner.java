@@ -14,16 +14,16 @@ public class TaskRunner implements Runnable{
     private int taskNumber=-1;
     private static int number=0;
 
-    TaskRunner(){
+    public TaskRunner(){
         taskNumber=number++;
     }
 
-    TaskRunner(String name){
+    public TaskRunner(String name){
         taskName=name;
         taskNumber=number++;
     }
 
-    TaskRunner(String name, Class<?> blockqueue){
+    public TaskRunner(String name, Class<?> blockqueue){
         taskName=name;
         taskQueue = blockqueue;
         taskNumber=number++;
