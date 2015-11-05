@@ -11,19 +11,25 @@ import edu.utdallas.taskExecutor.Task;
  */
 public class TaskExecutorImpl {
 
-    List<TaskRunner> runnerPool;
+    //List<TaskRunner> runnerPool;
+
+    TaskRunner[] runnerPool;
+
     BlockingTaskQueue taskQueue;
+
+
 
     public TaskExecutorImpl(int threadCount){
 
         taskQueue = new BlockingTaskQueue();
 
-        runnerPool = new ArrayList<TaskRunner>();
+        //runnerPool = new ArrayList<TaskRunner>();
+        runnerPool = new TaskRunner[threadCount];
 
         for(int i = 0; i < threadCount; i++){
-            runnerPool.add(new TaskRunner("TaskThread " + Integer.toString(i), taskQueue));
+            runnerPool[i] = (new TaskRunner("TaskThread " + Integer.toString(i), taskQueue));
 
-            new Thread(runnerPool.get(i), runnerPool.get(i).getName()).start();
+            new Thread(runnerPool[i], runnerPool[i].getName()).start();
         }
     }
 
