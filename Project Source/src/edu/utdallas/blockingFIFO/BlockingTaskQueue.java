@@ -12,7 +12,7 @@ public class BlockingTaskQueue {
     private int removePointer = 0;	//removePointer points to next index to remove a Task from
     //when the next index is null, then block the calling thread
 
-    static Object monitor = new Object();
+    Object monitor = new Object();
 
     public BlockingTaskQueue(){
         synchronized(monitor) {
