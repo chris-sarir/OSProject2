@@ -30,10 +30,11 @@ public class BlockingTaskQueue {
                 }
             }
 
-            taskArray[addPointer] = task;
-            addPointer = (addPointer + 1) % 100;
+            
 
             synchronized(monitor) { // End Critical Section
+            	taskArray[addPointer] = task;
+            	addPointer = (addPointer + 1) % 100;
                 monitor.notify();
             }
 
@@ -53,11 +54,17 @@ public class BlockingTaskQueue {
                 }
             }
 
-            t = taskArray[removePointer];
-            taskArray[removePointer] = null;
-            removePointer = (removePointer + 1)%100;
+            
 
             synchronized(monitor) { // End Critical Section
+            	t = taskArray[removePointer];
+            	
+            	if(t == null){
+			return t;
+		}
+		
+            	taskArray[removePointer] = null;
+            	removePointer = (removePointer + 1) % 100;
                 monitor.notify();
             }
 
